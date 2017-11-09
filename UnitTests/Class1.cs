@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using Xunit;
-using Moq;
+using System;
+using Microsoft.Extensions.Configuration;
 
 namespace UnitTests
 {
@@ -9,8 +9,10 @@ namespace UnitTests
         [Fact]
         public void PassingTest()
         {
-            var mock = new Mock<IEnumerable<int>>();
-            var obj = mock.Object;
+            var testConfiguration = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("testsettings.json")
+                .Build();
         }
     }
 }
